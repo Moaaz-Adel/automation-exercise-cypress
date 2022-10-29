@@ -1,0 +1,23 @@
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.idea
+
+cypress/videos
+cypress/screenshots
+
+# Ignore env local files - https://create-react-app.dev/docs/adding-custom-environment-variables/#what-other-env-files-can-be-used
+.env*.local
+
+build/
+dist/
+node_modules/
