@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 
 let productEndPoint = `${Cypress.env("apiUrl")}/productsList`;
-
+// Test
 describe("Product endpoint", () => {
   context("API 1: Get All Products List", () => {
     it("should get all products", () => {
