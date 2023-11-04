@@ -16,13 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noFallthroughCasesInSwitch": true,
-    "types": ["cypress"]
+    "types": ["cypress", "@shelex/cypress-allure-plugin"]
   },
-  "include": [
-    "src/**/*.cy.{js,ts,jsx,tsx}",
-    "scripts",
-    "backend",
-    "src/__tests__",
-    "cypress/support/component.ts"
-  ]
+  "include": ["cypress/*.cy.{js,ts,jsx,tsx}", "cypress/support/commands.ts"]
 }

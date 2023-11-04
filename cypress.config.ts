@@ -1,11 +1,11 @@
 import { defineConfig } from "cypress";
+const allureWriter = require("@shelex/cypress-allure-plugin/writer");
 
 export default defineConfig({
   chromeWebSecurity: false,
   viewportHeight: 1080,
-  videoUploadOnPasses: false,
-  videoCompression: false,
   viewportWidth: 1920,
+  videoCompression: false,
   screenshotOnRunFailure: true,
   projectId: "Automation Practice",
   defaultCommandTimeout: 3000,
@@ -14,20 +14,28 @@ export default defineConfig({
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
     charts: true,
-    reportPageTitle: "My Cervello Tests",
+    reportPageTitle: "Automation Exercise Tests",
     embeddedScreenshots: true,
     inlineAssets: true,
     saveAllAttempts: false,
   },
   env: {
     apiUrl: "https://automationexercise.com/api",
+    allure: true,
+    allureCleanResults: true,
+    allureSkipCommands: "wrap",
+    allureResults: "allure-results",
+    allureReuseAfterSpec: true,
   },
 
   e2e: {
     setupNodeEvents(on, config) {
+      // change baseUrl
+      config.baseUrl = config.env.baseUrl;
       // implement node event listeners here
       require("cypress-mochawesome-reporter/plugin")(on);
       require("cypress-localstorage-commands/plugin")(on, config);
+      allureWriter(on, config);
       return config;
     },
     baseUrl: "https://www.automationexercise.com",
