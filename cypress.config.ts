@@ -6,6 +6,7 @@ export default defineConfig({
   viewportHeight: 1080,
   viewportWidth: 1920,
   videoCompression: false,
+  execTimeout: 5000,
   screenshotOnRunFailure: true,
   projectId: "Automation Practice",
   defaultCommandTimeout: 3000,
