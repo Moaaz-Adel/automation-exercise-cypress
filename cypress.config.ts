@@ -36,6 +36,7 @@ export default defineConfig({
       // implement node event listeners here
       require("cypress-mochawesome-reporter/plugin")(on);
       require("cypress-localstorage-commands/plugin")(on, config);
+      require("@cypress/grep/src/plugin")(config);
       allureWriter(on, config);
       return config;
     },

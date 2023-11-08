@@ -4,7 +4,7 @@ import { accountInfoPage } from "../pages/account-info-page";
 import { accountCreatedPage } from "../pages/account-created-page";
 import { faker } from "@faker-js/faker";
 
-describe("Auth Tests", () => {
+describe("Auth Tests", { tags: "@critical" }, () => {
   let userName = faker.name.firstName();
   let lastName = faker.name.lastName();
   let address = faker.address.streetAddress();
@@ -15,7 +15,7 @@ describe("Auth Tests", () => {
   let zipCode = faker.address.zipCode();
   let userEmail = faker.internet.email();
   let company = faker.random.words(2);
-  it("test case 1: Register User", () => {
+  it("test case 1: Register User", { tags: ["@auth", "@e2e"] }, () => {
     cy.visit("/");
     homePage.Selectors.slider().should("be.visible");
     homePage.navigateToLoginPage();
