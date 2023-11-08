@@ -4,7 +4,7 @@ import { accountInfoPage } from "../pages/account-info-page";
 import { accountCreatedPage } from "../pages/account-created-page";
 import { faker } from "@faker-js/faker";
 
-describe("Auth Tests", { tags: "@critical" }, () => {
+describe("Auth Tests", () => {
   let userName = faker.name.firstName();
   let lastName = faker.name.lastName();
   let address = faker.address.streetAddress();
@@ -51,5 +51,9 @@ describe("Auth Tests", { tags: "@critical" }, () => {
       "contain.text",
       "Account Deleted!"
     );
+  });
+
+  it.only("should register", () => {
+    cy.registerViaAPI();
   });
 });

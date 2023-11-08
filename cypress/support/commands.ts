@@ -36,6 +36,37 @@
 //   }
 // }
 
-Cypress.Commands.add("selectRandomlyFromDdl", (min, max) => {
+const userInfo = {
+  title: "mr",
+  name: "Helllo",
+  email: "mr@dwa.wadw",
+  password: "adwd@dwadaw.adwa",
+  birth_date: "10",
+  birth_month: "11",
+  birth_year: "2008",
+  newsletter: 1,
+  optin: 1,
+  firstname: "mr",
+  lastname: "mr",
+  company: "mr",
+  address1: "mr",
+  address2: "mr",
+  country: "india",
+  state: "mr",
+  city: "mr",
+  zipcode: "mr",
+  mobile_number: "mr",
+};
+
+Cypress.Commands.add("registerViaAPI", (min, max) => {
+  cy.request({
+    method: "POST",
+    url: "https://automationexercise.com/api/createAccount",
+    body: userInfo,
+    form: true,
+  });
+});
+
+Cypress.Commands.add("selectRandomlyFromDdl", () => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 });
