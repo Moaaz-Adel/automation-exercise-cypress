@@ -2,7 +2,7 @@ class HomePage {
   Selectors = {
     slider: () => cy.get("#slider"),
     loginRegisterBtn: () => cy.get("a[href*='/login']"),
-    loggedInUserNameTxt: (userName) => cy.contains("b", userName),
+    loggedInUserNameTxt: () => cy.get(".nav.navbar-nav a > b"),
     deleteAccountBtn: () => cy.contains(" Delete Account"),
   };
 
