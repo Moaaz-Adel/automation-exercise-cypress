@@ -1,4 +1,6 @@
 /// <reference types="cypress" />
+///<reference path="../custom-commands.d.ts" />
+import { userInfo } from "../fixtures/testdata";
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -36,37 +38,19 @@
 //   }
 // }
 
-const userInfo = {
-  title: "mr",
-  name: "Helllo",
-  email: "mr@dwa.wadw",
-  password: "adwd@dwadaw.adwa",
-  birth_date: "10",
-  birth_month: "11",
-  birth_year: "2008",
-  newsletter: 1,
-  optin: 1,
-  firstname: "mr",
-  lastname: "mr",
-  company: "mr",
-  address1: "mr",
-  address2: "mr",
-  country: "india",
-  state: "mr",
-  city: "mr",
-  zipcode: "mr",
-  mobile_number: "mr",
-};
-
-Cypress.Commands.add("registerViaAPI", (min, max) => {
+Cypress.Commands.add("registerViaAPI", () => {
   cy.request({
     method: "POST",
     url: "https://automationexercise.com/api/createAccount",
     body: userInfo,
     form: true,
+  }).then(() => {
+    window.localStorage.setItem("userEmail", userInfo.email);
+    window.localStorage.setItem("userPass", userInfo.password);
+    window.localStorage.setItem("userName", userInfo.name);
   });
 });
 
-Cypress.Commands.add("selectRandomlyFromDdl", () => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-});
+// Cypress.Commands.add("selectRandomlyFromDdl", () => {
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// });
