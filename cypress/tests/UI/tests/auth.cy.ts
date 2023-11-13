@@ -18,12 +18,15 @@ describe("Auth Tests", { tags: "@all" }, () => {
   let zipCode = faker.address.zipCode();
   let userEmail = faker.internet.email();
   let company = faker.random.words(2);
-  context("Register with new user", () => {
-    it("test case 1: Register User", { tags: ["@auth", "@e2e"] }, () => {
+
+  context("Registration TCs", () => {
+    beforeEach("Setup", () => {
       cy.visit("/");
       homePage.Selectors.slider().should("be.visible");
       homePage.navigateToLoginPage();
       loginRegisterPage.Selectors.registerHeader().should("be.visible");
+    });
+    it.only("register new User", { tags: ["@auth", "@e2e"] }, () => {
       loginRegisterPage.registerNewUser(userName, userEmail);
       accountInfoPage.Selectors.accountInfoHeader().should("be.visible");
       accountInfoPage.registerNewUser(
@@ -53,9 +56,22 @@ describe("Auth Tests", { tags: "@all" }, () => {
         "Account Deleted!"
       );
     });
+
+    it("register user with existing email", { tags: ["@auth", "@e2e"] }, () => {
+      cy.registerViaAPI().then(() => {
+        loginRegisterPage.registerNewUser(
+          // @ts-ignore
+          localStorage.getItem("userName"),
+          localStorage.getItem("userEmail")
+        );
+        loginRegisterPage.Selectors.userAlreadyExistValidationTxt().should(
+          "be.visible"
+        );
+      });
+    });
   });
 
-  context("Login ", { tags: ["@e2e", "@all"] }, () => {
+  context("Login TCs", { tags: ["@e2e", "@all"] }, () => {
     before("Prepare user for login", () => {
       cy.registerViaAPI().then((resp) => {
         expect(JSON.parse(resp.body)).to.have.property(
@@ -90,7 +106,7 @@ describe("Auth Tests", { tags: "@all" }, () => {
       );
     });
 
-    it.only("login User incorrect username and password", () => {
+    it("login User incorrect username and password", () => {
       loginRegisterPage.login(
         // @ts-ignore
         userEmail,
@@ -99,6 +115,37 @@ describe("Auth Tests", { tags: "@all" }, () => {
       loginRegisterPage.Selectors.invalidUserNamePasswordFeedbackTxt().should(
         "be.visible"
       );
+    });
+  });
+
+  context("Logout TCs", () => {
+    before("Prepare user for login", () => {
+      cy.registerViaAPI().then((resp) => {
+        expect(JSON.parse(resp.body)).to.have.property(
+          "message",
+          "User created!"
+        );
+      });
+    });
+
+    beforeEach("Setup", () => {
+      cy.visit("/");
+      homePage.Selectors.slider().should("be.visible");
+      homePage.navigateToLoginPage();
+      loginRegisterPage.Selectors.registerHeader().should("be.visible");
+    });
+    it("logout", () => {
+      loginRegisterPage.login(
+        // @ts-ignore
+        localStorage.getItem("userEmail"),
+        localStorage.getItem("userPass")
+      );
+      homePage.Selectors.loggedInUserNameTxt().should(
+        "contain.text",
+        localStorage.getItem("userName")
+      );
+      homePage.logout();
+      cy.url().should("include", "login");
     });
   });
 });

@@ -10,6 +10,8 @@ class LoginRegisterPage {
     loginBtn: () => cy.get("[data-qa='login-button']"),
     invalidUserNamePasswordFeedbackTxt: () =>
       cy.contains("p", "Your email or password is incorrect!"),
+    userAlreadyExistValidationTxt: () =>
+      cy.contains("p", "Email Address already exist!"),
   };
 
   registerNewUser(userName: string, emailAddress: string) {
