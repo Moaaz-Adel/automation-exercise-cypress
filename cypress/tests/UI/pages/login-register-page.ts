@@ -8,6 +8,8 @@ class LoginRegisterPage {
     emailAddressTxt: () => cy.get("[data-qa='login-email']"),
     passwordTxt: () => cy.get("[data-qa='login-password']"),
     loginBtn: () => cy.get("[data-qa='login-button']"),
+    invalidUserNamePasswordFeedbackTxt: () =>
+      cy.contains("p", "Your email or password is incorrect!"),
   };
 
   registerNewUser(userName: string, emailAddress: string) {

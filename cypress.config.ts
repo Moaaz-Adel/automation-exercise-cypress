@@ -27,6 +27,7 @@ export default defineConfig({
     allureSkipCommands: "wrap",
     allureResults: "allure-results",
     allureReuseAfterSpec: true,
+    defaultPassword: process.env.SEED_DEFAULT_USER_PASSWORD,
   },
 
   e2e: {

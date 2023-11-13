@@ -64,13 +64,16 @@ describe("Auth Tests", { tags: "@all" }, () => {
         );
       });
     });
-    it("login User with correct email and password", () => {
-      console.log("Register");
-      console.log(userInfo.email);
+
+    beforeEach("Setup", () => {
       cy.visit("/");
       homePage.Selectors.slider().should("be.visible");
       homePage.navigateToLoginPage();
       loginRegisterPage.Selectors.registerHeader().should("be.visible");
+    });
+    it("login User with correct email and password", () => {
+      console.log("Register");
+      console.log(userInfo.email);
       loginRegisterPage.login(
         // @ts-ignore
         localStorage.getItem("userEmail"),
@@ -84,6 +87,17 @@ describe("Auth Tests", { tags: "@all" }, () => {
       accountCreatedPage.Selectors.accountDeletedBackTxt().should(
         "contain.text",
         "Account Deleted!"
+      );
+    });
+
+    it.only("login User incorrect username and password", () => {
+      loginRegisterPage.login(
+        // @ts-ignore
+        userEmail,
+        "InvalidPass"
+      );
+      loginRegisterPage.Selectors.invalidUserNamePasswordFeedbackTxt().should(
+        "be.visible"
       );
     });
   });
