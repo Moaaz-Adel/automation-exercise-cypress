@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-// @ts-ignore
 import { homePage } from "../pages/home-page";
 import { loginRegisterPage } from "../pages/login-register-page";
 import { accountInfoPage } from "../pages/account-info-page";
@@ -26,7 +25,7 @@ describe("Auth Tests", { tags: "@all" }, () => {
       homePage.navigateToLoginPage();
       loginRegisterPage.Selectors.registerHeader().should("be.visible");
     });
-    it.only("register new User", { tags: ["@auth", "@e2e"] }, () => {
+    it("register new User", { tags: ["@auth", "@e2e"] }, () => {
       loginRegisterPage.registerNewUser(userName, userEmail);
       accountInfoPage.Selectors.accountInfoHeader().should("be.visible");
       accountInfoPage.registerNewUser(
