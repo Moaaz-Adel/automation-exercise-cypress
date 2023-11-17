@@ -1,6 +1,6 @@
 export const apiUrl = Cypress.env("apiUrl");
 
-// APIs Endpoints
+// API Endpoints
 export const productEndPoint = `${apiUrl}/productsList`;
 export const brandsEndPoint = `${apiUrl}/brandsList`;
 export const searchProductEndPoint = `${apiUrl}/searchProduct`;
