@@ -1,7 +1,6 @@
 import { loginEndPoint } from "../../utils/links";
-
+import { body } from "../../fixtures/testdata";
 describe("Login API", () => {
-  const body = new URLSearchParams();
   context("Login Happy Path", () => {
     it("verify Login with valid details", () => {
       body.append("email", "moaaz@qa.team");
