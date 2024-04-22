@@ -5,3 +5,4 @@ export const productEndPoint = `${apiUrl}/productsList`;
 export const brandsEndPoint = `${apiUrl}/brandsList`;
 export const searchProductEndPoint = `${apiUrl}/searchProduct`;
 export const loginEndPoint = `${apiUrl}/verifyLogin`;
+export const accountEndPoint = `${apiUrl}/createAccount`;
