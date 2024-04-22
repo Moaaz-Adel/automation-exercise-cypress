@@ -26,7 +26,7 @@ describe("Auth Tests", { tags: "@all" }, () => {
       homePage.navigateToLoginPage();
       loginRegisterPage.Selectors.registerHeader().should("be.visible");
     });
-    it("register new User", { tags: ["@auth", "@e2e"] }, () => {
+    it.only("register new User", { tags: ["@auth", "@e2e"] }, () => {
       loginRegisterPage.registerNewUser(userName, userEmail);
       accountInfoPage.Selectors.accountInfoHeader().should("be.visible");
       accountInfoPage.registerNewUser(

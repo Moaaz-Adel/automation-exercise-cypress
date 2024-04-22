@@ -1,4 +1,4 @@
-export class SignInPage {
+class SignInPage {
   Selectors = {
     signUpLoginBtn: () => cy.get('[href="/login"]'),
   };
