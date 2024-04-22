@@ -5,6 +5,7 @@ import { accountInfoPage } from "../pages/account-info-page";
 import { accountCreatedPage } from "../pages/account-created-page";
 import { faker } from "@faker-js/faker";
 import { userInfo } from "../../../fixtures/testdata";
+import { singInPage } from "../pages/SignInPage";
 
 describe("Auth Tests", { tags: "@all" }, () => {
   let userName = faker.name.firstName();
@@ -25,7 +26,7 @@ describe("Auth Tests", { tags: "@all" }, () => {
       homePage.navigateToLoginPage();
       loginRegisterPage.Selectors.registerHeader().should("be.visible");
     });
-    it("register new User", { tags: ["@auth", "@e2e"] }, () => {
+    it.only("register new User", { tags: ["@auth", "@e2e"] }, () => {
       loginRegisterPage.registerNewUser(userName, userEmail);
       accountInfoPage.Selectors.accountInfoHeader().should("be.visible");
       accountInfoPage.registerNewUser(
@@ -146,5 +147,9 @@ describe("Auth Tests", { tags: "@all" }, () => {
       homePage.logout();
       cy.url().should("include", "login");
     });
+  });
+
+  it.only("signInTest", () => {
+    singInPage.singIn();
   });
 });
