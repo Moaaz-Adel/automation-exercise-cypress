@@ -39,6 +39,7 @@ export default defineConfig({
       require("cypress-localstorage-commands/plugin")(on, config);
       require("@cypress/grep/src/plugin")(config);
       allureWriter(on, config);
+
       return config;
     },
     baseUrl: "https://www.automationexercise.com",

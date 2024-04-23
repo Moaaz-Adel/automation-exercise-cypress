@@ -5,6 +5,7 @@ import "cypress-plugin-api";
 import "@shelex/cypress-allure-plugin"; //
 import registerCypressGrep from "@cypress/grep/src/support";
 registerCypressGrep();
+import "cypress-localstorage-commands";
 // This is a great place to put global configuration and
 // behavior that modifies Cypress.
 //
