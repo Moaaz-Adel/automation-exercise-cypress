@@ -30,6 +30,7 @@ describe("Account API Tests", () => {
         expect(response.status).to.equal(200); //* This should be 201 instead of 200
         expect(response.body).to.contain("User created!");
       });
+      
     });
 
   //   it("get user details by email", () => {
