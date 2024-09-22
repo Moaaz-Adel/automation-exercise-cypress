@@ -1,6 +1,5 @@
 import { defineConfig } from "cypress";
 const allureWriter = require("@shelex/cypress-allure-plugin/writer");
-const path = require("path");
 
 export default defineConfig({
   chromeWebSecurity: false,
