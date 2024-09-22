@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
-///<reference path="../custom-commands.d.ts" />
-import { userInfo } from "../fixtures/testdata";
+/// <reference path="../custom-commands.d.ts" />
+import { generateUserData } from "../fixtures/testdata";
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -39,6 +39,7 @@ import { userInfo } from "../fixtures/testdata";
 // }
 
 Cypress.Commands.add("registerViaAPI", () => {
+  const userInfo = generateUserData();
   cy.request({
     method: "POST",
     url: "https://automationexercise.com/api/createAccount",

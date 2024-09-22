@@ -45,6 +45,7 @@ export default defineConfig({
     baseUrl: "https://www.automationexercise.com",
     specPattern: "cypress/tests/**/*.cy.{js,jsx,ts,tsx}",
     excludeSpecPattern: ["*-page.ts", "utils.js", "*.d.ts"],
+    // supportFile: "cypress/support/e2e.ts",
     supportFile: "cypress/support/e2e.ts",
     retries: 1,
   },

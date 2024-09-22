@@ -1,0 +1,12 @@
+version: "3"
+services:
+  e2e:
+    image: cypress
+    build:
+      context: .
+      dockerfile: Dockerfile # Ensure this Dockerfile exists in the root directory
+    container_name: cypress
+    command: npx cypress run
+    volumes:
+      - ./cypress:/app/cypress
+      - ./cypress.config.ts:/app/cypress.config.ts
