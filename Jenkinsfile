@@ -1,11 +1,11 @@
 pipeline {
-    agent { label 'your-ubuntu-agent-label' } // Use the label you assigned to your Ubuntu agent
+    agent any
 
     stages {
         stage('Run API Tests 🤖') {
             steps {
                 echo 'Building..'
-                sh 'npm install' // This will now run in the Ubuntu environment
+                bat 'npm install'
             }
         }
         stage('Run Smoke Tests 🍔') {
