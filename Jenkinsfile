@@ -2,17 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Run API Tests 🤖') {
             steps {
                 echo 'Building..'
+                sh 'npm install'
+                
             }
         }
-        stage('Test') {
+        stage('Run Smoke Tests 🍔') {
             steps {
                 echo 'Testing..'
             }
         }
-        stage('Deploy') {
+        stage('Run Regression Tests 🌟') {
             steps {
                 echo 'Deploying....'
             }
