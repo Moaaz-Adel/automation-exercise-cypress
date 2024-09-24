@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "tsc --noEmit",
     "cy:e2e": "cypress run --env allure=true",
-    "cy:smoke": "npx cypress run --env grepTags=APIs,allure=true",
-    "cy:regression": "npx cypress run --env grepTags=APIs,allure=true",
-    "cy:apis": "npx cypress run --env grepTags=APIs,allure=true",
+    "cy:smoke": "NO_COLOR=1 cypress run --env grepTags=smoke,allure=true",
+    "cy:regression": "NO_COLOR=1 cypress run --env grepTags=regression,allure=true",
+    "cy:apis": "NO_COLOR=1 cypress run --env grepTags=APIs,allure=true",
     "pretest": "npm run lint",
     "e2e:chrome": "cypress run --browser chrome",
     "cy:verify": "cypress verify",

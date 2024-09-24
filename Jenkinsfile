@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    options {
-        ansiColor('xterm')
-    }
+
     parameters {
         string(name: 'TEST_TYPE', defaultValue: 'none', description: 'Choose the type of tests to run (apis, smoke, regression)')
     }
