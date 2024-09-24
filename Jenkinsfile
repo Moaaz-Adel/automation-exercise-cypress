@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'TEST_TYPE', defaultValue: 'none', description: 'Choose the type of tests to run (apis, smoke, regression)')
-    }
-
     stages {
         stage('Install Dependencies 📦') {
             steps {
@@ -12,9 +8,22 @@ pipeline {
                 bat 'npm install'
             }
         }
+        stage('Select Test Type 📝') {
+            steps {
+                script {
+                    def userInput = input(
+                        id: 'userInput', message: 'Select the type of tests to run:',
+                        parameters: [
+                            [$class: 'StringParameterDefinition', name: 'TEST_TYPE', defaultValue: 'none', description: 'Enter apis, smoke, or regression']
+                        ]
+                    )
+                    env.TEST_TYPE = userInput
+                }
+            }
+        }
         stage('Run API Tests 🤖') {
             when {
-                expression { params.TEST_TYPE == 'apis' }
+                expression { env.TEST_TYPE == 'apis' }
             }
             steps {
                 echo 'Running API tests...'
@@ -23,7 +32,7 @@ pipeline {
         }
         stage('Run Smoke Tests 🍔') {
             when {
-                expression { params.TEST_TYPE == 'smoke' }
+                expression { env.TEST_TYPE == 'smoke' }
             }
             steps {
                 echo 'Running Smoke tests...'
@@ -32,7 +41,7 @@ pipeline {
         }
         stage('Run Regression Tests 🌟') {
             when {
-                expression { params.TEST_TYPE == 'regression' }
+                expression { env.TEST_TYPE == 'regression' }
             }
             steps {
                 echo 'Running Regression tests...'
