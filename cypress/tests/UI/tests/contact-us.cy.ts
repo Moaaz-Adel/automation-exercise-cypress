@@ -7,7 +7,7 @@ let name = faker.name.firstName();
 let email = faker.internet.email();
 let subject = faker.random.words(2);
 let message = faker.random.words(6);
-describe("Contact Us TCs", () => {
+describe("Contact Us TCs", { tags: ["@Regression"] }, () => {
   beforeEach("Setup", () => {
     cy.visit("/");
     homePage.Selectors.slider().should("be.visible");

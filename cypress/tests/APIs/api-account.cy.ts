@@ -6,7 +6,7 @@ import {
 } from "../../utils/links";
 import { body } from "../../fixtures/testdata";
 import { faker } from "@faker-js/faker";
-describe("Account API Tests", () => {
+describe("Account API Tests", { tags: ["APIs"] }, () => {
   before(() => {
     // cy.clearLocalStorageSnapshot();
     cy.saveLocalStorage();

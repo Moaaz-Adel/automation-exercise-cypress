@@ -1,5 +1,5 @@
 import { productEndPoint } from "../../utils/links";
-describe("Product endpoint", () => {
+describe("Product endpoint", { tags: ["APIs"] }, () => {
   context("API 1: Get All Products List", () => {
     it("should get all products", () => {
       cy.api({

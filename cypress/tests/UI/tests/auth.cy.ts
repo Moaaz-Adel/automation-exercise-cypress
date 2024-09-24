@@ -6,7 +6,7 @@ import { accountCreatedPage } from "../pages/account-created-page";
 import { faker } from "@faker-js/faker";
 import { singInPage } from "../pages/SignInPage";
 
-describe("Auth Tests", { tags: "@all" }, () => {
+describe("Auth Tests", { tags: "Regression" }, () => {
   let userName = faker.name.firstName();
   let lastName = faker.name.lastName();
   let address = faker.address.streetAddress();
