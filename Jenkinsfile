@@ -3,9 +3,6 @@ pipeline {
     options {
         ansiColor('xterm')
     }
-    parameters {
-        string(name: 'TEST_TYPE', defaultValue: 'none', description: 'Choose the type of tests to run (apis, smoke, regression)')
-    }
     stages {
         stage('Install Dependencies 📦') {
             steps {
@@ -19,7 +16,9 @@ pipeline {
                     def userInput = input(
                         id: 'userInput', message: 'Select the type of tests to run:',
                         parameters: [
-                            [$class: 'StringParameterDefinition', name: 'TEST_TYPE', defaultValue: 'none', description: 'Enter apis, smoke, or regression']
+                            [$class: 'ChoiceParameterDefinition', name: 'TEST_TYPE', 
+                             choices: ['none', 'apis', 'smoke', 'regression'], 
+                             description: 'Choose the type of tests to run']
                         ]
                     )
                     env.TEST_TYPE = userInput
