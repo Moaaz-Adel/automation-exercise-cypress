@@ -1,5 +1,5 @@
 import { brandsEndPoint } from "../../utils/links";
-describe("Brands API Tests", () => {
+describe("Brands API Tests", { tags: ["APIs"] }, () => {
   context("Happy Paths on Brands APIs", () => {
     it("should list all existing brands", () => {
       cy.api({

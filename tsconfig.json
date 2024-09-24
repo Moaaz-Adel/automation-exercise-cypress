@@ -18,5 +18,5 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["cypress", "@shelex/cypress-allure-plugin", "@cypress/grep"]
   },
-  "include": ["**/*.*", "cypress/support/commands.ts"]
+  "include": ["**/*.*", "cypress/support/commands.ts", "**/*.ts"]
 }

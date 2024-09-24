@@ -3,7 +3,8 @@
 // loaded automatically before your test files.
 import "cypress-plugin-api";
 import "@shelex/cypress-allure-plugin"; //
-import registerCypressGrep from "@cypress/grep/src/support";
+// @ts-ignore
+import registerCypressGrep from "@cypress/grep";
 registerCypressGrep();
 import "cypress-localstorage-commands";
 // This is a great place to put global configuration and

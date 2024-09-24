@@ -1,5 +1,5 @@
 import { searchProductEndPoint } from "../../utils/links";
-describe("Product endpoint", () => {
+describe("Product endpoint", { tags: ["APIs"] }, () => {
   context("Search Products Happy Path", () => {
     it("should get the matched search query keyword", () => {
       cy.request({
