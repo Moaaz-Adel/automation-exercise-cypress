@@ -53,4 +53,7 @@ pipeline {
             }
         }
     }
+    triggers {
+        pollSCM('* * * * *') // Check for changes every minute
+    }
 }
