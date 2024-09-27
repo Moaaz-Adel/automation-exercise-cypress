@@ -1,6 +1,9 @@
 /// <reference types="cypress" />
 /// <reference path="../custom-commands.d.ts" />
 import { generateUserData } from "../fixtures/testdata";
+import { homePage } from "../tests/UI/pages/home-page";
+import { accountCreatedPage } from "../tests/UI/pages/account-created-page";
+import { loginRegisterPage } from "../tests/UI/pages/login-register-page";
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -55,3 +58,23 @@ Cypress.Commands.add("registerViaAPI", () => {
 // Cypress.Commands.add("selectRandomlyFromDdl", () => {
 //   return Math.floor(Math.random() * (max - min + 1)) + min;
 // });
+
+Cypress.Commands.add("navigateToLogin", () => {
+  cy.visit("/");
+  homePage.Selectors.slider().should("be.visible");
+  homePage.navigateToLoginPage();
+  loginRegisterPage.Selectors.registerHeader().should("be.visible");
+});
+
+Cypress.Commands.add("deleteAccount", () => {
+  homePage.Selectors.deleteAccountBtn().click();
+  accountCreatedPage.Selectors.accountDeletedBackTxt().should(
+    "contain.text",
+    "Account Deleted!"
+  );
+});
+
+Cypress.Commands.add("navigateToHome", () => {
+  cy.visit("/");
+  homePage.Selectors.slider().should("be.visible");
+});
