@@ -1,5 +1,6 @@
 import { loginEndPoint } from "../../utils/links";
 import { body } from "../../fixtures/testdata";
+import { StatusCodes, Messages } from "../../support/constants";
 describe("Login API", { tags: ["APIs"] }, () => {
   context("Login Happy Path", () => {
     it("verify Login with valid details", () => {
@@ -14,7 +15,7 @@ describe("Login API", { tags: ["APIs"] }, () => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       }).then((response) => {
-        expect(response.status).to.equal(200).equal(200);
+        expect(response.status).to.equal(StatusCodes.SUCCESS);
         expect(response.body).to.contains("User exists!");
       });
     });
@@ -32,7 +33,7 @@ describe("Login API", { tags: ["APIs"] }, () => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       }).then((response) => {
-        expect(response.status).to.equal(200).equal(200);
+        expect(response.status).to.equal(StatusCodes.SUCCESS);
         expect(response.body).to.contains(
           "Bad request, email or password parameter is missing in POST request."
         );
@@ -48,7 +49,7 @@ describe("Login API", { tags: ["APIs"] }, () => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       }).then((response) => {
-        expect(response.status).to.equal(200); //! This is NOT valid Response Code, should be 405
+        expect(response.status).to.equal(StatusCodes.SUCCESS); //! This is NOT valid Response Code, should be 405
         expect(response.body).to.contains(
           "This request method is not supported."
         );
@@ -67,8 +68,8 @@ describe("Login API", { tags: ["APIs"] }, () => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       }).then((response) => {
-        expect(response.status).to.equal(200); //! This is NOT valid Response Code, should be 404
-        expect(response.body).to.contains("User not found!");
+        expect(response.status).to.equal(StatusCodes.SUCCESS); //! This is NOT valid Response Code, should be 404
+        expect(response.body).to.contains(Messages.USER_NOT_FOUND);
       });
     });
   });

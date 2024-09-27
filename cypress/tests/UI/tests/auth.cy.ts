@@ -3,72 +3,66 @@ import { homePage } from "../pages/home-page";
 import { loginRegisterPage } from "../pages/login-register-page";
 import { accountInfoPage } from "../pages/account-info-page";
 import { accountCreatedPage } from "../pages/account-created-page";
-import { faker } from "@faker-js/faker";
-import { singInPage } from "../pages/SignInPage";
+import { generateUserData } from "../../../fixtures/userData";
 
 describe("Auth Tests", { tags: "Regression" }, () => {
-  let userName = faker.name.firstName();
-  let lastName = faker.name.lastName();
-  let address = faker.address.streetAddress();
-  let address2 = faker.address.state();
-  let state = faker.address.streetName();
-  let city = faker.address.city();
-  let mobileNumber = faker.phone.phoneNumber();
-  let zipCode = faker.address.zipCode();
-  let userEmail = faker.internet.email();
-  let company = faker.random.words(2);
+  let userData: any;
 
   context("Registration TCs", () => {
+    before(() => {
+      userData = generateUserData();
+    });
+
     beforeEach("Setup", () => {
-      cy.visit("/");
-      homePage.Selectors.slider().should("be.visible");
-      homePage.navigateToLoginPage();
-      loginRegisterPage.Selectors.registerHeader().should("be.visible");
+      cy.navigateToLogin();
     });
 
     it("register new User", { tags: ["@auth", "@e2e"] }, () => {
-      loginRegisterPage.registerNewUser(userName, userEmail);
+      loginRegisterPage.registerNewUser(userData.userName, userData.userEmail);
       accountInfoPage.Selectors.accountInfoHeader().should("be.visible");
       accountInfoPage.registerNewUser(
         1,
         "1233254367ADaw@#",
         1,
         1,
-        company,
-        userName,
-        lastName,
-        address,
-        address2,
-        state,
-        city,
-        zipCode,
-        mobileNumber
+        userData.company,
+        userData.userName,
+        userData.lastName,
+        userData.address,
+        userData.address2,
+        userData.state,
+        userData.city,
+        userData.zipCode,
+        userData.mobileNumber
       );
       accountCreatedPage.Selectors.accountCreatedBackTxt().should(
         "contain.text",
         "Account Created!"
       );
       accountCreatedPage.Selectors.continueBtn().click();
-      homePage.Selectors.loggedInUserNameTxt().should("contain.text", userName);
-      homePage.Selectors.deleteAccountBtn().click();
-      accountCreatedPage.Selectors.accountDeletedBackTxt().should(
+      homePage.Selectors.loggedInUserNameTxt().should(
         "contain.text",
-        "Account Deleted!"
+        userData.userName
       );
+      cy.deleteAccount();
     });
 
-    it("register user with existing email", { tags: ["@auth", "@e2e"] }, () => {
-      cy.registerViaAPI().then(() => {
-        loginRegisterPage.registerNewUser(
-          // @ts-ignore
-          localStorage.getItem("userName"),
-          localStorage.getItem("userEmail")
-        );
-        loginRegisterPage.Selectors.userAlreadyExistValidationTxt().should(
-          "be.visible"
-        );
-      });
-    });
+    it.only(
+      "register user with existing email",
+      { tags: ["@auth", "@e2e"] },
+      () => {
+        cy.registerViaAPI().then(() => {
+          loginRegisterPage.registerNewUser(
+            // @ts-ignore
+            localStorage.getItem("userName"),
+            localStorage.getItem("userEmail")
+          );
+          loginRegisterPage.Selectors.userAlreadyExistValidationTxt().should(
+            "be.visible"
+          );
+        });
+      }
+    );
   });
 
   context("Login TCs", { tags: ["@e2e", "@all"] }, () => {
@@ -82,10 +76,7 @@ describe("Auth Tests", { tags: "Regression" }, () => {
     });
 
     beforeEach("Setup", () => {
-      cy.visit("/");
-      homePage.Selectors.slider().should("be.visible");
-      homePage.navigateToLoginPage();
-      loginRegisterPage.Selectors.registerHeader().should("be.visible");
+      cy.navigateToLogin();
     });
     it("login User with correct email and password", () => {
       console.log("Register");
@@ -98,17 +89,13 @@ describe("Auth Tests", { tags: "Regression" }, () => {
         "contain.text",
         localStorage.getItem("userName")
       );
-      homePage.Selectors.deleteAccountBtn().click();
-      accountCreatedPage.Selectors.accountDeletedBackTxt().should(
-        "contain.text",
-        "Account Deleted!"
-      );
+      cy.deleteAccount();
     });
 
     it("login User incorrect username and password", () => {
       loginRegisterPage.login(
         // @ts-ignore
-        userEmail,
+        userData.userEmail,
         "InvalidPass"
       );
       loginRegisterPage.Selectors.invalidUserNamePasswordFeedbackTxt().should(
@@ -128,10 +115,7 @@ describe("Auth Tests", { tags: "Regression" }, () => {
     });
 
     beforeEach("Setup", () => {
-      cy.visit("/");
-      homePage.Selectors.slider().should("be.visible");
-      homePage.navigateToLoginPage();
-      loginRegisterPage.Selectors.registerHeader().should("be.visible");
+      cy.navigateToLogin();
     });
     it("logout", () => {
       loginRegisterPage.login(

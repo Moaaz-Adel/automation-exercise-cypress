@@ -1,4 +1,5 @@
 import { searchProductEndPoint } from "../../utils/links";
+import { StatusCodes, Messages } from "../../support/constants";
 describe("Product endpoint", { tags: ["APIs"] }, () => {
   context("Search Products Happy Path", () => {
     it("should get the matched search query keyword", () => {
@@ -9,7 +10,7 @@ describe("Product endpoint", { tags: ["APIs"] }, () => {
           search_product: 123,
         },
       }).then((resp) => {
-        expect(resp.status).to.eq(200);
+        expect(resp.status).to.eq(StatusCodes.SUCCESS);
         console.log(resp.body);
       });
     });
@@ -21,7 +22,9 @@ describe("Product endpoint", { tags: ["APIs"] }, () => {
         method: "POST",
         url: searchProductEndPoint,
       }).then((resp) => {
-        expect(JSON.parse(resp.body).responseCode).to.eq(400);
+        expect(JSON.parse(resp.body).responseCode).to.eq(
+          StatusCodes.BAD_REQUEST
+        );
       });
     });
   });

@@ -1,23 +1,27 @@
 /// <reference types="cypress" />
 import { homePage } from "../pages/home-page";
 import { contactUsPage } from "../pages/contact-us-page";
-import { faker } from "@faker-js/faker";
+import { generateContactUsData } from "../../../fixtures/userData";
 
-let name = faker.name.firstName();
-let email = faker.internet.email();
-let subject = faker.random.words(2);
-let message = faker.random.words(6);
+let contactUsData: any;
 describe("Contact Us TCs", { tags: ["@Regression"] }, () => {
-  beforeEach("Setup", () => {
-    cy.visit("/");
-    homePage.Selectors.slider().should("be.visible");
+  before(() => {
+    contactUsData = generateContactUsData(); //generatedData
   });
-  it.only("contact Us Form", () => {
+  beforeEach("Setup", () => {
+    cy.navigateToHome(); // Custom command for visiting the homepage
+  });
+  it("contact Us Form", () => {
     homePage.navigateToContactUsPage();
     contactUsPage.Selectors.contactUsHeaderTxt().should("be.visible");
-    contactUsPage.fillFormData(name, email, subject, message);
+    contactUsPage.fillFormData(
+      contactUsData.name,
+      contactUsData.email,
+      contactUsData.subject,
+      contactUsData.message
+    );
     contactUsPage.verifySuccessMessage();
-    contactUsPage.navigateToHomePage();
+    cy.navigateToHome();
     cy.url().should("eq", "https://www.automationexercise.com/");
   });
 });

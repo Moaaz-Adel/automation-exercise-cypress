@@ -49,4 +49,5 @@ export default defineConfig({
     supportFile: "cypress/support/e2e.ts",
     retries: 1,
   },
+  watchForFileChanges: false,
 });
