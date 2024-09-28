@@ -7,7 +7,7 @@
     "lint": "tsc --noEmit",
     "cy:e2e": "cypress run --env allure=true",
     "cy:smoke": "cypress run --env grepTags=smoke,allure=true",
-    "cy:regression": "cypress run --env grepTags=regression,allure=true",
+    "cy:regression": "cypress run --env grepTags=all,allure=true",
     "cy:apis": "cypress run --env grepTags=APIs,allure=true",
     "pretest": "npm run lint",
     "e2e:chrome": "cypress run --browser chrome",

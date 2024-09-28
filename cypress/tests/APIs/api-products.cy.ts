@@ -1,6 +1,6 @@
 import { productEndPoint } from "@support/links";
 import { StatusCodes, Messages } from "@support/constants";
-describe("Product endpoint", { tags: ["APIs"] }, () => {
+describe("Product endpoint", { tags: ["APIs", "FULL"] }, () => {
   context("API 1: Get All Products List", () => {
     it("should get all products", () => {
       cy.api({

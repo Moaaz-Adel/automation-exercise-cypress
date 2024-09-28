@@ -2,7 +2,7 @@ import { loginEndPoint } from "@support/links";
 import { body } from "@fixtures/testdata";
 import { StatusCodes, Messages } from "@support/constants";
 import { formUrlEncodedHeaders } from "@support/apiHelpers";
-describe("Login API", { tags: ["APIs"] }, () => {
+describe("Login API", { tags: ["APIs", "FULL"] }, () => {
   context("Login Happy Path", () => {
     it("verify Login with valid details", () => {
       body.append("email", "moaaz@qa.team");

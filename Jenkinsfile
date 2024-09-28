@@ -14,12 +14,15 @@ pipeline {
             steps {
                 script {
                     def userInput = input(
-                        id: 'userInput', message: 'Select the type of tests to run:',
+                        id: 'userInput', 
+                        message: 'Select the type of tests to run:',
                         parameters: [
                             [$class: 'ChoiceParameterDefinition', name: 'TEST_TYPE', 
-                             choices: ['none', 'apis', 'smoke', 'regression'], 
+                             choices: ['none', 'apis', 'smoke', 'full'], 
                              description: 'Choose the type of tests to run']
-                        ]
+                        ],
+                        timeout: 1800, // Timeout in seconds (30 minutes)
+                        timeoutMessage: 'Input timed out, aborting the build.'
                     )
                     env.TEST_TYPE = userInput
                 }
@@ -45,10 +48,10 @@ pipeline {
         }
         stage('Run Regression Tests 🌟') {
             when {
-                expression { env.TEST_TYPE == 'regression' }
+                expression { env.TEST_TYPE == 'full' }
             }
             steps {
-                echo 'Running Regression tests...'
+                echo 'Running Regression for all Tests...'
                 bat 'npm run cy:regression'
             }
         }
