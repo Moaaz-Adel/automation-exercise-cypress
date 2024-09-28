@@ -1,6 +1,7 @@
-import { loginEndPoint } from "../../utils/links";
-import { body } from "../../fixtures/testdata";
-import { StatusCodes, Messages } from "../../support/constants";
+import { loginEndPoint } from "@support/links";
+import { body } from "@fixtures/testdata";
+import { StatusCodes, Messages } from "@support/constants";
+import { formUrlEncodedHeaders } from "@support/apiHelpers";
 describe("Login API", { tags: ["APIs"] }, () => {
   context("Login Happy Path", () => {
     it("verify Login with valid details", () => {
@@ -10,10 +11,7 @@ describe("Login API", { tags: ["APIs"] }, () => {
         url: `${loginEndPoint}`,
         method: "POST",
         body: Object.fromEntries(body),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+        headers: formUrlEncodedHeaders,
       }).then((response) => {
         expect(response.status).to.equal(StatusCodes.SUCCESS);
         expect(response.body).to.contains("User exists!");
@@ -28,10 +26,7 @@ describe("Login API", { tags: ["APIs"] }, () => {
         url: `${loginEndPoint}`,
         method: "POST",
         body: Object.fromEntries(body),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+        headers: formUrlEncodedHeaders,
       }).then((response) => {
         expect(response.status).to.equal(StatusCodes.SUCCESS);
         expect(response.body).to.contains(
@@ -44,10 +39,7 @@ describe("Login API", { tags: ["APIs"] }, () => {
         url: `${loginEndPoint}`,
         method: "DELETE",
         body: Object.fromEntries(body),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+        headers: formUrlEncodedHeaders,
       }).then((response) => {
         expect(response.status).to.equal(StatusCodes.SUCCESS); //! This is NOT valid Response Code, should be 405
         expect(response.body).to.contains(
@@ -63,10 +55,7 @@ describe("Login API", { tags: ["APIs"] }, () => {
         url: `${loginEndPoint}`,
         method: "POST",
         body: Object.fromEntries(body),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+        headers: formUrlEncodedHeaders,
       }).then((response) => {
         expect(response.status).to.equal(StatusCodes.SUCCESS); //! This is NOT valid Response Code, should be 404
         expect(response.body).to.contains(Messages.USER_NOT_FOUND);

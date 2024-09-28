@@ -1,7 +1,6 @@
-/// <reference types="cypress" />
 import { homePage } from "../pages/home-page";
 import { contactUsPage } from "../pages/contact-us-page";
-import { generateContactUsData } from "../../../fixtures/userData";
+import { generateContactUsData } from "@fixtures/userData";
 
 let contactUsData: any;
 describe("Contact Us TCs", { tags: ["@Regression"] }, () => {

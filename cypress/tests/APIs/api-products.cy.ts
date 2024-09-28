@@ -1,5 +1,5 @@
-import { productEndPoint } from "../../utils/links";
-import { StatusCodes, Messages } from "../../support/constants";
+import { productEndPoint } from "@support/links";
+import { StatusCodes, Messages } from "@support/constants";
 describe("Product endpoint", { tags: ["APIs"] }, () => {
   context("API 1: Get All Products List", () => {
     it("should get all products", () => {
@@ -18,7 +18,6 @@ describe("Product endpoint", { tags: ["APIs"] }, () => {
         method: "POST",
         url: productEndPoint,
       }).then((resp) => {
-        console.log(typeof resp.body);
         expect(JSON.parse(resp.body)).to.have.property(
           "responseCode",
           StatusCodes.NOT_ALLOWED

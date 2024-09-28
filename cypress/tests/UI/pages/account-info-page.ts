@@ -1,4 +1,4 @@
-import { getRandomInt } from "../../../utils/common-functions";
+import { getRandomInt } from "@support/common-functions";
 
 class AccountInfoPage {
   Selectors = {
@@ -29,19 +29,19 @@ class AccountInfoPage {
   };
 
   registerNewUser(
-    title,
-    password,
-    newsLetter,
-    specialOffer,
-    company,
-    firstName,
-    lastName,
-    address1,
-    address2,
-    city,
-    state,
-    zipCode,
-    mobileNumber
+    title: number,
+    password: string,
+    newsLetter: number,
+    specialOffer: number,
+    company: string,
+    firstName: string,
+    lastName: string,
+    address1: string,
+    address2: string,
+    city: string,
+    state: string,
+    zipCode: string,
+    mobileNumber: string
   ) {
     if (title == 1) {
       this.Selectors.titleMaleRdo().check();
