@@ -12,7 +12,7 @@ import {
 } from "@support/apiHelpers";
 import { StatusCodes, Messages } from "@support/constants";
 
-describe("Account API Tests", { tags: ["APIs"] }, () => {
+describe("Account API Tests", { tags: ["APIs", "FULL"] }, () => {
   before(() => {
     cy.saveLocalStorage();
   });
@@ -26,7 +26,7 @@ describe("Account API Tests", { tags: ["APIs"] }, () => {
   });
 
   context("Create/Register user account", () => {
-    it("create/register new User Account", () => {
+    it.only("create/register new User Account", () => {
       cy.request({
         url: accountEndPoint,
         method: "POST",

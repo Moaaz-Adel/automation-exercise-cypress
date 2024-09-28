@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
 
 // Function to create form-urlencoded body
-export const createFormUrlEncodedBody = (data: any) => {
-  return Object.fromEntries(data);
+export const createFormUrlEncodedBody = (data: Record<string, string>) => {
+  return new URLSearchParams(data).toString();
 };
 
 // Function to get headers for form submission

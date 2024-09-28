@@ -1,6 +1,6 @@
 import { searchProductEndPoint } from "@support/links";
 import { StatusCodes, Messages } from "@support/constants";
-describe("Product endpoint", { tags: ["APIs"] }, () => {
+describe("Product endpoint", { tags: ["APIs", "FULL"] }, () => {
   context("Search Products Happy Path", () => {
     it("should get the matched search query keyword", () => {
       cy.request({

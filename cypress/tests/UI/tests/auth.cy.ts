@@ -4,7 +4,7 @@ import { accountInfoPage } from "../pages/account-info-page";
 import { accountCreatedPage } from "../pages/account-created-page";
 import { generateUserData } from "@fixtures/userData";
 
-describe("Auth Tests", { tags: "Regression" }, () => {
+describe("Auth Tests", { tags: ["Regression", "FULL"] }, () => {
   let userData: any;
 
   context("Registration TCs", () => {

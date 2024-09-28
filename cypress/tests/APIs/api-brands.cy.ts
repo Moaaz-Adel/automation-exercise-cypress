@@ -1,6 +1,6 @@
 import { brandsEndPoint } from "@support/links";
 import { StatusCodes } from "@support/constants";
-describe("Brands API Tests", { tags: ["APIs"] }, () => {
+describe("Brands API Tests", { tags: ["APIs", "FULL"] }, () => {
   context("Happy Paths on Brands APIs", () => {
     it("should list all existing brands", () => {
       cy.api({

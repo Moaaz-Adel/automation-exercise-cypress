@@ -3,7 +3,7 @@ import { contactUsPage } from "../pages/contact-us-page";
 import { generateContactUsData } from "@fixtures/userData";
 
 let contactUsData: any;
-describe("Contact Us TCs", { tags: ["@Regression"] }, () => {
+describe("Contact Us TCs", { tags: ["@Regression", "FULL"] }, () => {
   before(() => {
     contactUsData = generateContactUsData(); //generatedData
   });
