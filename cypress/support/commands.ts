@@ -1,6 +1,5 @@
-/// <reference types="cypress" />
 /// <reference path="../custom-commands.d.ts" />
-import { generateUserData } from "../fixtures/testdata";
+import { generateUserData } from "@fixtures/testdata";
 import { homePage } from "../tests/UI/pages/home-page";
 import { accountCreatedPage } from "../tests/UI/pages/account-created-page";
 import { loginRegisterPage } from "../tests/UI/pages/login-register-page";

@@ -1,5 +1,5 @@
-import { brandsEndPoint } from "../../utils/links";
-import { StatusCodes } from "../../support/constants";
+import { brandsEndPoint } from "@support/links";
+import { StatusCodes } from "@support/constants";
 describe("Brands API Tests", { tags: ["APIs"] }, () => {
   context("Happy Paths on Brands APIs", () => {
     it("should list all existing brands", () => {

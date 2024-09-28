@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -16,7 +16,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noFallthroughCasesInSwitch": true,
-    "types": ["cypress", "@shelex/cypress-allure-plugin", "@cypress/grep"]
+    "types": ["cypress", "@shelex/cypress-allure-plugin", "@cypress/grep"],
+    "paths": {
+      "@fixtures/*": ["cypress/fixtures/*"], // Specifically map to the fixtures folder
+      "@support/*": ["cypress/support/*"] // Specifically map to the support folder
+    }
   },
   "include": ["**/*.*", "cypress/support/commands.ts", "**/*.ts"]
 }

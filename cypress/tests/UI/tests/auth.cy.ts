@@ -1,9 +1,8 @@
-/// <reference types="cypress" />
 import { homePage } from "../pages/home-page";
 import { loginRegisterPage } from "../pages/login-register-page";
 import { accountInfoPage } from "../pages/account-info-page";
 import { accountCreatedPage } from "../pages/account-created-page";
-import { generateUserData } from "../../../fixtures/userData";
+import { generateUserData } from "@fixtures/userData";
 
 describe("Auth Tests", { tags: "Regression" }, () => {
   let userData: any;
@@ -47,22 +46,18 @@ describe("Auth Tests", { tags: "Regression" }, () => {
       cy.deleteAccount();
     });
 
-    it.only(
-      "register user with existing email",
-      { tags: ["@auth", "@e2e"] },
-      () => {
-        cy.registerViaAPI().then(() => {
-          loginRegisterPage.registerNewUser(
-            // @ts-ignore
-            localStorage.getItem("userName"),
-            localStorage.getItem("userEmail")
-          );
-          loginRegisterPage.Selectors.userAlreadyExistValidationTxt().should(
-            "be.visible"
-          );
-        });
-      }
-    );
+    it("register user with existing email", { tags: ["@auth", "@e2e"] }, () => {
+      cy.registerViaAPI().then(() => {
+        loginRegisterPage.registerNewUser(
+          // @ts-ignore
+          localStorage.getItem("userName"),
+          localStorage.getItem("userEmail")
+        );
+        loginRegisterPage.Selectors.userAlreadyExistValidationTxt().should(
+          "be.visible"
+        );
+      });
+    });
   });
 
   context("Login TCs", { tags: ["@e2e", "@all"] }, () => {
@@ -79,7 +74,6 @@ describe("Auth Tests", { tags: "Regression" }, () => {
       cy.navigateToLogin();
     });
     it("login User with correct email and password", () => {
-      console.log("Register");
       loginRegisterPage.login(
         // @ts-ignore
         localStorage.getItem("userEmail"),

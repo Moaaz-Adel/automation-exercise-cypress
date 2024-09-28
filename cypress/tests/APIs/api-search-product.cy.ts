@@ -1,5 +1,5 @@
-import { searchProductEndPoint } from "../../utils/links";
-import { StatusCodes, Messages } from "../../support/constants";
+import { searchProductEndPoint } from "@support/links";
+import { StatusCodes, Messages } from "@support/constants";
 describe("Product endpoint", { tags: ["APIs"] }, () => {
   context("Search Products Happy Path", () => {
     it("should get the matched search query keyword", () => {
@@ -11,7 +11,6 @@ describe("Product endpoint", { tags: ["APIs"] }, () => {
         },
       }).then((resp) => {
         expect(resp.status).to.eq(StatusCodes.SUCCESS);
-        console.log(resp.body);
       });
     });
   });

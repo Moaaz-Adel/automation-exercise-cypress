@@ -2,15 +2,15 @@ import {
   deleteAccountEndPoint,
   updateAccountEndPoint,
   accountEndPoint,
-} from "../../utils/links";
-import { body } from "../../fixtures/testdata";
+} from "@support/links";
+import { body } from "@fixtures/testdata";
 import { faker } from "@faker-js/faker";
 import {
   createFormUrlEncodedBody,
   formUrlEncodedHeaders,
   generateUserBody,
-} from "../../support/apiHelpers";
-import { StatusCodes, Messages } from "../../support/constants";
+} from "@support/apiHelpers";
+import { StatusCodes, Messages } from "@support/constants";
 
 describe("Account API Tests", { tags: ["APIs"] }, () => {
   before(() => {
@@ -56,8 +56,8 @@ describe("Account API Tests", { tags: ["APIs"] }, () => {
     context("DELETE METHOD To Delete User Account", () => {
       it("delete user Account", () => {
         const userDetails = new URLSearchParams();
-        userDetails.append("email", body.get("email"));
-        userDetails.append("password", body.get("password"));
+        userDetails.append("email", body.get("email") ?? "");
+        userDetails.append("password", body.get("password") ?? "");
         cy.request({
           url: deleteAccountEndPoint,
           method: "DELETE",
